@@ -117,13 +117,16 @@ class _BuilButtonLanguage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton.icon(
-      onPressed: onLanguageChanged,
-      label: Text(
-        isEnglish ? 'ES' : 'EN',
-        style: Theme.of(context).textTheme.titleLarge,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextButton.icon(
+        onPressed: onLanguageChanged,
+        label: Text(
+          isEnglish ? 'ES' : 'EN',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20),
+        ),
+        icon: Icon(Icons.language),
       ),
-      icon: Icon(Icons.language),
     );
   }
 }
