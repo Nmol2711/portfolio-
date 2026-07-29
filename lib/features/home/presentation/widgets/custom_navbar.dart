@@ -92,15 +92,21 @@ class CustomNavbar extends StatelessWidget {
               ],
             ),
           if (isMobile)
-            Row(
-              children: [
-                _BuilButtonLanguage(
-                  onLanguageChanged: onLanguageChanged,
-                  isEnglish: isEnglish,
-                  isMobile: true,
-                ),
-                IconButton(onPressed: onMenuTap, icon: const Icon(Icons.menu)),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                children: [
+                  _BuilButtonLanguage(
+                    onLanguageChanged: onLanguageChanged,
+                    isEnglish: isEnglish,
+                    isMobile: true,
+                  ),
+                  IconButton(
+                    onPressed: onMenuTap,
+                    icon: const Icon(Icons.menu),
+                  ),
+                ],
+              ),
             ),
         ],
       ),
@@ -121,18 +127,15 @@ class _BuilButtonLanguage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: TextButton.icon(
-        onPressed: onLanguageChanged,
-        label: Text(
-          isEnglish ? 'ES' : 'EN',
-          style: Theme.of(
-            context,
-          ).textTheme.titleLarge?.copyWith(fontSize: isMobile ? 18 : 20),
-        ),
-        icon: Icon(Icons.language),
+    return TextButton.icon(
+      onPressed: onLanguageChanged,
+      label: Text(
+        isEnglish ? 'ES' : 'EN',
+        style: Theme.of(
+          context,
+        ).textTheme.titleLarge?.copyWith(fontSize: isMobile ? 18 : 20),
       ),
+      icon: Icon(Icons.language),
     );
   }
 }
