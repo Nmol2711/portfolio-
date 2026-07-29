@@ -35,7 +35,7 @@ class CustomNavbar extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              left: 32.0,
+              left: 16.0,
               top: 8.0,
               bottom: 8.0,
               right: 8.0,
@@ -44,7 +44,7 @@ class CustomNavbar extends StatelessWidget {
               "Nelson Molina | Portfolio",
               style: Theme.of(
                 context,
-              ).textTheme.titleLarge?.copyWith(fontSize: 20),
+              ).textTheme.titleLarge?.copyWith(fontSize: isMobile ? 20 : 18),
             ),
           ),
 
@@ -87,6 +87,7 @@ class CustomNavbar extends StatelessWidget {
                 _BuilButtonLanguage(
                   onLanguageChanged: onLanguageChanged,
                   isEnglish: isEnglish,
+                  isMobile: false,
                 ),
               ],
             ),
@@ -96,6 +97,7 @@ class CustomNavbar extends StatelessWidget {
                 _BuilButtonLanguage(
                   onLanguageChanged: onLanguageChanged,
                   isEnglish: isEnglish,
+                  isMobile: true,
                 ),
                 IconButton(onPressed: onMenuTap, icon: const Icon(Icons.menu)),
               ],
@@ -110,10 +112,12 @@ class _BuilButtonLanguage extends StatelessWidget {
   const _BuilButtonLanguage({
     required this.onLanguageChanged,
     required this.isEnglish,
+    required this.isMobile,
   });
 
   final VoidCallback onLanguageChanged;
   final bool isEnglish;
+  final bool isMobile;
 
   @override
   Widget build(BuildContext context) {
@@ -123,7 +127,9 @@ class _BuilButtonLanguage extends StatelessWidget {
         onPressed: onLanguageChanged,
         label: Text(
           isEnglish ? 'ES' : 'EN',
-          style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 20),
+          style: Theme.of(
+            context,
+          ).textTheme.titleLarge?.copyWith(fontSize: isMobile ? 18 : 20),
         ),
         icon: Icon(Icons.language),
       ),

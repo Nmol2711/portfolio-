@@ -7,6 +7,7 @@ import 'package:portfolio/features/home/presentation/widgets/buil_drawer_item.da
 import 'package:portfolio/features/home/presentation/widgets/custom_navbar.dart';
 import 'package:portfolio/features/projects/presentation/pages/project_section.dart';
 import 'package:portfolio/features/skills/presentation/pages/skills_section.dart';
+import 'package:portfolio/utils/responsive.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -156,7 +157,7 @@ class _HomePageState extends State<HomePage> {
               controller: _scrollController,
               child: Column(
                 children: [
-                  const SizedBox(height: 40),
+                  if (!Responsive.isMobile(context)) const SizedBox(height: 40),
                   HeroSection(
                     key: _heroKey,
                     onProjectsTap: () => _scrollToSection(_projectsKey),
