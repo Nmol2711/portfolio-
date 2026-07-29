@@ -3,7 +3,10 @@ import 'package:portfolio/core/app_colors.dart';
 import 'package:portfolio/utils/responsive.dart'; // Tu helper responsivo
 
 class HeroSection extends StatelessWidget {
-  const HeroSection({super.key});
+  final VoidCallback? onProjectsTap;
+  final VoidCallback? onContactsTap;
+
+  const HeroSection({super.key, this.onProjectsTap, this.onContactsTap});
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +99,7 @@ class HeroSection extends StatelessWidget {
           : MainAxisAlignment.start,
       children: [
         ElevatedButton(
-          onPressed: () {},
+          onPressed: onProjectsTap,
           style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.cardColor,
             foregroundColor: AppColors.titleColor,
@@ -119,7 +122,7 @@ class HeroSection extends StatelessWidget {
         ),
         SizedBox(width: isMobile ? 12 : 32),
         OutlinedButton(
-          onPressed: () {},
+          onPressed: onContactsTap,
           style: OutlinedButton.styleFrom(
             foregroundColor: AppColors.titleColor,
             side: const BorderSide(color: AppColors.textColor),

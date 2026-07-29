@@ -146,7 +146,11 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   const SizedBox(height: 40),
-                  HeroSection(key: _heroKey),
+                  HeroSection(
+                    key: _heroKey,
+                    onProjectsTap: () => _scrollToSection(_projectsKey),
+                    onContactsTap: () => _scrollToSection(_contactsKey),
+                  ),
                   const SizedBox(height: 60),
 
                   ProjectSection(key: _projectsKey),
