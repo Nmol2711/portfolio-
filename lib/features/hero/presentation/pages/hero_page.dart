@@ -19,33 +19,43 @@ class HeroSection extends StatelessWidget {
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildTextContent(context, isMobile: true),
-                const SizedBox(height: 40),
+                // 1. Textos principales (Saludo, Título y Descripción)
+                _buildHeaderTexts(context, isMobile: true),
+                const SizedBox(height: 32),
+
+                // 2. Avatar de perfil
                 _buildAvatar(isMobile: true),
+                const SizedBox(height: 32),
+
+                // 3. Botones de acción al final
+                _buildActionButtons(context, isMobile: true),
               ],
             )
           : Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                // Expanded obliga a la columna a respetar las 7 columnas de Figma
                 Expanded(
                   flex: 8,
-                  child: _buildTextContent(context, isMobile: false),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildHeaderTexts(context, isMobile: false),
+                      const SizedBox(height: 32),
+                      _buildActionButtons(context, isMobile: false),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 40),
-                // Lado derecho para tu foto / avatar
                 Expanded(flex: 4, child: _buildAvatar(isMobile: false)),
               ],
             ),
     );
   }
 
-  // Widget para los textos
-  Widget _buildTextContent(BuildContext context, {required bool isMobile}) {
+  // Widget para los textos (Saludo, Título y Descripción)
+  Widget _buildHeaderTexts(BuildContext context, {required bool isMobile}) {
     return Column(
-      crossAxisAlignment:
-          CrossAxisAlignment.start, // Alinea todo a la izquierda
-
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Subtítulo azul
         Text(
@@ -54,78 +64,81 @@ class HeroSection extends StatelessWidget {
             context,
           ).textTheme.titleMedium?.copyWith(fontSize: isMobile ? 18 : 32),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 16),
 
         // Título principal grande
         Text(
           'Mobile, Web & Backend Software Developer',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontSize: isMobile ? 32 : 40,
+            fontSize: isMobile ? 28 : 40,
             height: 1.2,
           ),
         ),
-        SizedBox(height: isMobile ? 18 : 64),
+        SizedBox(height: isMobile ? 16 : 24),
 
         // Párrafo descriptivo
-        Padding(
-          padding: const EdgeInsets.all(32.0),
-          child: Text(
-            'I develop complete systems through design engineering and observation to understand real-life problems and transform them into high-quality digital solutions.',
-            style: Theme.of(
-              context,
-            ).textTheme.bodyMedium?.copyWith(fontSize: isMobile ? 18 : 32),
+        Text(
+          'I develop complete systems through design engineering and observation to understand real-life problems and transform them into high-quality digital solutions.',
+          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+            fontSize: isMobile ? 16 : 20,
+            height: 1.5,
           ),
         ),
-        SizedBox(height: isMobile ? 32 : 128),
-        // Botones de acción (Projects & Contacts)
-        Row(
-          children: [
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.cardColor,
-                foregroundColor: AppColors.titleColor,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 16,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: Text(
-                'Projects',
-                style: TextStyle(
-                  color: AppColors.titleColor,
-                  fontSize: isMobile ? 18 : 24,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
+      ],
+    );
+  }
+
+  // Widget para los botones de acción (Projects & Contacts)
+  Widget _buildActionButtons(BuildContext context, {required bool isMobile}) {
+    return Row(
+      mainAxisAlignment: isMobile
+          ? MainAxisAlignment.center
+          : MainAxisAlignment.start,
+      children: [
+        ElevatedButton(
+          onPressed: () {},
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.cardColor,
+            foregroundColor: AppColors.titleColor,
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 20 : 24,
+              vertical: isMobile ? 12 : 16,
             ),
-            SizedBox(width: isMobile ? 12 : 32),
-            OutlinedButton(
-              onPressed: () {},
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.titleColor,
-                side: const BorderSide(color: AppColors.textColor),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 16,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: Text(
-                'Contacts',
-                style: TextStyle(
-                  color: AppColors.titleColor,
-                  fontSize: isMobile ? 18 : 24,
-                  fontWeight: FontWeight.normal,
-                ),
-              ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
             ),
-          ],
+          ),
+          child: Text(
+            'Projects',
+            style: TextStyle(
+              color: AppColors.titleColor,
+              fontSize: isMobile ? 16 : 20,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
+        ),
+        SizedBox(width: isMobile ? 12 : 32),
+        OutlinedButton(
+          onPressed: () {},
+          style: OutlinedButton.styleFrom(
+            foregroundColor: AppColors.titleColor,
+            side: const BorderSide(color: AppColors.textColor),
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 20 : 24,
+              vertical: isMobile ? 12 : 16,
+            ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          child: Text(
+            'Contacts',
+            style: TextStyle(
+              color: AppColors.titleColor,
+              fontSize: isMobile ? 16 : 20,
+              fontWeight: FontWeight.normal,
+            ),
+          ),
         ),
       ],
     );
@@ -144,8 +157,7 @@ class HeroSection extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage('assets/imgs/nelson_mol.jpg'),
-            fit: BoxFit
-                .cover, // Para que la foto llene el círculo proporcionalmente
+            fit: BoxFit.cover,
           ),
         ),
       ),

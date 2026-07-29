@@ -96,32 +96,35 @@ class CardCustomProject extends StatelessWidget {
                       ),
                     ),
 
-                  ElevatedButton.icon(
-                    onPressed: link.isNotEmpty
-                        ? () async => await openUrl(link)
-                        : null,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton.icon(
+                      onPressed: link.isNotEmpty
+                          ? () async => await openUrl(link)
+                          : null,
 
-                    icon: SvgPicture.asset(
-                      'assets/icons/github.svg',
-                      width: 25, // Tamaño adecuado para un botón
-                      height: 25,
+                      icon: SvgPicture.asset(
+                        'assets/icons/github.svg',
+                        width: 25, // Tamaño adecuado para un botón
+                        height: 25,
 
-                      // Descomenta la siguiente línea si tu PNG es negro y necesitas que sea blanco:
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white,
-                        BlendMode.srcIn,
+                        // Descomenta la siguiente línea si tu PNG es negro y necesitas que sea blanco:
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
+                        ),
                       ),
-                    ),
-                    label: const Text('GitHub'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF21262D),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 14,
-                        vertical: 10,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6),
+                      label: const Text('GitHub'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF21262D),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 14,
+                          vertical: 10,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(6),
+                        ),
                       ),
                     ),
                   ),
