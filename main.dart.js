@@ -70964,7 +70964,7 @@ q=A.d0("nav_about",r)
 p=A.d0("nav_projects",r)
 o=A.d0("nav_skills",r)
 n=A.d0("nav_contact",r)
-j.push(A.jY(A.c([new A.cM(B.cv,new A.m_(q,m.c,l),l),new A.cM(B.cv,new A.m_(p,m.d,l),l),new A.cM(B.cv,new A.m_(o,m.e,l),l),new A.cM(B.Eq,new A.m_(n,m.f,l),l),new A.zA(m.x,r,!1,l)],s),B.X,B.aE,B.bf,0))}if(k)j.push(A.jY(A.c([new A.zA(m.x,m.w,!0,l),A.amQ(l,B.F8,l,l,m.r,l,l)],s),B.X,B.aE,B.bf,0))
+j.push(A.jY(A.c([new A.cM(B.cv,new A.m_(q,m.c,l),l),new A.cM(B.cv,new A.m_(p,m.d,l),l),new A.cM(B.cv,new A.m_(o,m.e,l),l),new A.cM(B.Eq,new A.m_(n,m.f,l),l),new A.zA(m.x,r,!1,l)],s),B.X,B.aE,B.bf,0))}if(k)j.push(new A.cM(B.cv,A.jY(A.c([new A.zA(m.x,m.w,!0,l),A.amQ(l,B.F8,l,l,m.r,l,l)],s),B.X,B.aE,B.bf,0),l))
 return A.io(l,A.jY(j,B.X,B.f9,B.bf,0),l,new A.ed(B.aJ,l,l,l,l,l,B.b7),60,l,l,l)}}
 A.zA.prototype={
 R(a){var s=null,r=this.d?"ES":"EN",q=A.a7(a).ok.r
@@ -70972,7 +70972,7 @@ if(q==null)q=s
 else q=q.lu(this.e?18:20)
 q=A.cY(r,q,s)
 r=A.aiH(B.EY,s,s,s)
-return new A.cM(B.cv,new A.K2(!0,this.c,s,s,s,s,B.R,s,!1,s,s,new A.Qp(q,r,s,s,s),s),s)}}
+return new A.K2(!0,this.c,s,s,s,s,B.R,s,!1,s,s,new A.Qp(q,r,s,s,s),s)}}
 A.m_.prototype={
 au(){return new A.RF()}}
 A.RF.prototype={
