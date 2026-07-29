@@ -4,7 +4,8 @@ import 'package:portfolio/core/app_colors.dart';
 import 'package:portfolio/utils/responsive.dart';
 
 class SkillsSection extends StatelessWidget {
-  const SkillsSection({super.key});
+  final bool isEnglish;
+  const SkillsSection({super.key, this.isEnglish = true});
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class SkillsSection extends StatelessWidget {
           color: AppColors.cardColor,
           alignment: Alignment.center,
           child: Text(
-            'Skills & Technologies',
+            isEnglish ? 'Skills & Technologies' : 'Habilidades & Tecnologías',
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontSize: 24),

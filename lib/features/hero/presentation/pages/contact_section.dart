@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:portfolio/core/app_colors.dart';
+import 'package:portfolio/core/app_string.dart';
 import 'package:portfolio/utils/open_url.dart';
 import 'package:portfolio/utils/responsive.dart';
 
 class ContactSection extends StatelessWidget {
-  const ContactSection({super.key});
+  final bool isEnglish;
+  const ContactSection({super.key, this.isEnglish = true});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class ContactSection extends StatelessWidget {
           color: AppColors.cardColor,
           alignment: Alignment.center,
           child: Text(
-            'Get In Touch',
+            isEnglish ? 'Get In Touch' : 'Contactame',
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontSize: 24),
@@ -37,7 +39,7 @@ class ContactSection extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  "I'm currently open to new opportunities, freelance projects, or collaborations.",
+                  AppStrings.getText('contact_dialogue', isEnglish),
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontSize: isMobile ? 16 : 18,
@@ -55,7 +57,7 @@ class ContactSection extends StatelessWidget {
                     // Email
                     _buildContactButton(
                       context,
-                      label: 'Send Email',
+                      label: isEnglish ? 'Send Email' : "Correo",
                       icon: Icons.email_outlined,
                       onTap: () => openUrl(
                         'mailto:molinacmacho581@gmail.com',
@@ -94,7 +96,9 @@ class ContactSection extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                'Designed & Built by Nelson Molina',
+                isEnglish
+                    ? 'Designed & Built by Nelson Molina'
+                    : 'Diseñado & Construido por Nelson Molina',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textColor,
                   fontWeight: FontWeight.w600,
@@ -102,7 +106,9 @@ class ContactSection extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               Text(
-                'Built with Flutter Web',
+                isEnglish
+                    ? 'Built with Flutter Web'
+                    : 'Construido con Flutter Web',
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.textColor.withValues(alpha: 0.6),
                   fontSize: 11,

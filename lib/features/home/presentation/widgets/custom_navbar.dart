@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/app_colors.dart';
+import 'package:portfolio/core/app_string.dart';
 import 'package:portfolio/utils/responsive.dart';
 
 class CustomNavbar extends StatelessWidget {
@@ -8,6 +9,8 @@ class CustomNavbar extends StatelessWidget {
   final VoidCallback? onSkillsTap;
   final VoidCallback? onContactsTap;
   final VoidCallback? onMenuTap; // <-- Nuevo callback para el menú móvil
+  final bool isEnglish;
+  final VoidCallback onLanguageChanged;
 
   const CustomNavbar({
     super.key,
@@ -15,7 +18,9 @@ class CustomNavbar extends StatelessWidget {
     this.onProjectsTap,
     this.onSkillsTap,
     this.onContactsTap,
-    this.onMenuTap, // <-- Lo requerimos de forma opcional
+    this.onMenuTap,
+    required this.isEnglish,
+    required this.onLanguageChanged,
   });
 
   @override
@@ -39,48 +44,86 @@ class CustomNavbar extends StatelessWidget {
               "Nelson Molina | Portfolio",
               style: Theme.of(
                 context,
-              ).textTheme.titleLarge?.copyWith(fontSize: 24),
+              ).textTheme.titleLarge?.copyWith(fontSize: 20),
             ),
           ),
+
           if (!isMobile)
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: _NavLink(
-                    title: 'About me',
+                    title: AppStrings.getText('nav_about', isEnglish),
                     onTap: onAboutTap ?? () {},
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: _NavLink(
-                    title: 'Projects',
+                    title: AppStrings.getText('nav_projects', isEnglish),
                     onTap: onProjectsTap ?? () {},
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: _NavLink(title: 'Skills', onTap: onSkillsTap ?? () {}),
+                  padding: const EdgeInsets.all(8.0),
+                  child: _NavLink(
+                    title: AppStrings.getText('nav_skills', isEnglish),
+                    onTap: onSkillsTap ?? () {},
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 16.0,
+                    left: 8.0,
                     top: 16.0,
                     bottom: 16.0,
-                    right: 32.0,
+                    right: 20.0,
                   ),
                   child: _NavLink(
-                    title: 'Contacts',
+                    title: AppStrings.getText('nav_contact', isEnglish),
                     onTap: onContactsTap ?? () {},
                   ),
+                ),
+                _BuilButtonLanguage(
+                  onLanguageChanged: onLanguageChanged,
+                  isEnglish: isEnglish,
                 ),
               ],
             ),
           if (isMobile)
-            IconButton(onPressed: onMenuTap, icon: const Icon(Icons.menu)),
+            Row(
+              children: [
+                _BuilButtonLanguage(
+                  onLanguageChanged: onLanguageChanged,
+                  isEnglish: isEnglish,
+                ),
+                IconButton(onPressed: onMenuTap, icon: const Icon(Icons.menu)),
+              ],
+            ),
         ],
       ),
+    );
+  }
+}
+
+class _BuilButtonLanguage extends StatelessWidget {
+  const _BuilButtonLanguage({
+    required this.onLanguageChanged,
+    required this.isEnglish,
+  });
+
+  final VoidCallback onLanguageChanged;
+  final bool isEnglish;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+      onPressed: onLanguageChanged,
+      label: Text(
+        isEnglish ? 'ES' : 'EN',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
+      icon: Icon(Icons.language),
     );
   }
 }

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/app_colors.dart';
+import 'package:portfolio/core/app_string.dart';
 import 'package:portfolio/features/projects/presentation/widgets/card_custom_project.dart';
 import 'package:portfolio/utils/responsive.dart';
 
 class ProjectSection extends StatelessWidget {
-  const ProjectSection({super.key});
+  final bool isEnglish;
+  const ProjectSection({super.key, this.isEnglish = true});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class ProjectSection extends StatelessWidget {
           color: AppColors.cardColor,
           alignment: Alignment.center,
           child: Text(
-            'Projects',
+            AppStrings.getText('nav_projects', isEnglish),
             style: Theme.of(
               context,
             ).textTheme.titleLarge?.copyWith(fontSize: 24),
@@ -39,28 +41,37 @@ class ProjectSection extends StatelessWidget {
               spacing: 24, // Espacio horizontal entre tarjetas
               runSpacing: 24, // Espacio vertical entre filas
               alignment: WrapAlignment.center,
-              children: const [
+              children: [
                 CardCustomProject(
-                  title: 'PDAM',
-                  subTitle: 'Pet Food Dispenser Prototype',
-                  description:
-                      'This project is a comprehensive system designed to automate and monitor pet feeding. Developed as part of the Systems Engineering program at the Universidad Politécnica Territorial José Félix Ribas.',
+                  title: AppStrings.getText('project_pdam_title', isEnglish),
+                  subTitle: AppStrings.getText(
+                    'project_pdam_subtitle',
+                    isEnglish,
+                  ),
+                  description: AppStrings.getText(
+                    'project_pdam_description',
+                    isEnglish,
+                  ),
                   link: 'https://github.com/Nmol2711/PDAM',
                   technologies: ['Python', 'Flutter', 'ESP32', 'FastAPI'],
                   assetImage: 'assets/imgs/pdam.png',
                 ),
                 CardCustomProject(
-                  title: 'ZoroMee',
-                  description:
-                      'This software uses Artificial Intelligence to analyze the content of your documents and automatically organize them into thematic folders. Forget about moving files one by one.',
+                  title: AppStrings.getText('project_zoromee_title', isEnglish),
+                  description: AppStrings.getText(
+                    'project_zoromee_description',
+                    isEnglish,
+                  ),
                   link: 'https://github.com/Nmol2711/ZoroMeme',
                   technologies: ['Python', 'Grop IA'],
                   assetImage: 'assets/imgs/zorromeme.png',
                 ),
                 CardCustomProject(
-                  title: 'Yes No App',
-                  description:
-                      'A simple chat app built with Flutter that simulates a conversation. The app responds to questions and specific keywords with automated replies, including images and GIFs.',
+                  title: AppStrings.getText('project_yesno_title', isEnglish),
+                  description: AppStrings.getText(
+                    'project_yesno_description',
+                    isEnglish,
+                  ),
                   link: 'https://github.com/Nmol2711/Flutter-Chat-Yes-No',
                   technologies: ['Flutter'],
                   assetImage: 'assets/imgs/yesnoapp.png',

@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/app_colors.dart';
+import 'package:portfolio/core/app_string.dart';
 import 'package:portfolio/utils/responsive.dart'; // Tu helper responsivo
 
 class HeroSection extends StatelessWidget {
   final VoidCallback? onProjectsTap;
   final VoidCallback? onContactsTap;
+  final bool isEnglish;
 
-  const HeroSection({super.key, this.onProjectsTap, this.onContactsTap});
+  const HeroSection({
+    super.key,
+    this.onProjectsTap,
+    this.onContactsTap,
+    this.isEnglish = true,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +69,7 @@ class HeroSection extends StatelessWidget {
       children: [
         // Subtítulo azul
         Text(
-          'Hello my name is Nelson!',
+          AppStrings.getText('greeting', isEnglish),
           style: Theme.of(
             context,
           ).textTheme.titleMedium?.copyWith(fontSize: isMobile ? 18 : 32),
@@ -71,7 +78,7 @@ class HeroSection extends StatelessWidget {
 
         // Título principal grande
         Text(
-          'Mobile, Web & Backend Software Developer',
+          AppStrings.getText('role', isEnglish),
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
             fontSize: isMobile ? 28 : 40,
             height: 1.2,
@@ -81,7 +88,7 @@ class HeroSection extends StatelessWidget {
 
         // Párrafo descriptivo
         Text(
-          'I develop complete systems through design engineering and observation to understand real-life problems and transform them into high-quality digital solutions.',
+          AppStrings.getText('description', isEnglish),
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(
             fontSize: isMobile ? 16 : 20,
             height: 1.5,
@@ -112,7 +119,7 @@ class HeroSection extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Projects',
+            AppStrings.getText('nav_projects', isEnglish),
             style: TextStyle(
               color: AppColors.titleColor,
               fontSize: isMobile ? 16 : 20,
@@ -135,7 +142,7 @@ class HeroSection extends StatelessWidget {
             ),
           ),
           child: Text(
-            'Contacts',
+            AppStrings.getText('nav_contact', isEnglish),
             style: TextStyle(
               color: AppColors.titleColor,
               fontSize: isMobile ? 16 : 20,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/core/app_colors.dart';
+import 'package:portfolio/core/app_string.dart';
 import 'package:portfolio/features/hero/presentation/pages/contact_section.dart';
 import 'package:portfolio/features/hero/presentation/pages/hero_page.dart';
 import 'package:portfolio/features/home/presentation/widgets/buil_drawer_item.dart';
@@ -15,6 +16,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isEnglish = false;
+
   final ScrollController _scrollController = ScrollController();
 
   // Clave para controlar el Scaffold (abrir/cerrar el Drawer en móvil)
@@ -26,7 +29,12 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey _skillsKey = GlobalKey();
   final GlobalKey _contactsKey = GlobalKey();
 
-  // Función para desplazarse suavemente a una sección
+  void toggleLanguage() {
+    setState(() {
+      isEnglish = !isEnglish;
+    });
+  }
+
   // Función para desplazarse suavemente a una sección
   void _scrollToSection(GlobalKey key) {
     // Cierra el endDrawer si está abierto
@@ -100,25 +108,25 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     buildDrawerItem(
                       context,
-                      title: 'About me',
+                      title: AppStrings.getText('nav_about', isEnglish),
                       icon: Icons.person_outline_rounded,
                       onTap: () => _scrollToSection(_heroKey),
                     ),
                     buildDrawerItem(
                       context,
-                      title: 'Projects',
+                      title: AppStrings.getText('nav_projects', isEnglish),
                       icon: Icons.code_rounded,
                       onTap: () => _scrollToSection(_projectsKey),
                     ),
                     buildDrawerItem(
                       context,
-                      title: 'Skills',
+                      title: AppStrings.getText('nav_skills', isEnglish),
                       icon: Icons.terminal_rounded,
                       onTap: () => _scrollToSection(_skillsKey),
                     ),
                     buildDrawerItem(
                       context,
-                      title: 'Contacts',
+                      title: AppStrings.getText('nav_contact', isEnglish),
                       icon: Icons.alternate_email_rounded,
                       onTap: () => _scrollToSection(_contactsKey),
                     ),
@@ -139,6 +147,9 @@ class _HomePageState extends State<HomePage> {
             onContactsTap: () => _scrollToSection(_contactsKey),
             // Callback para abrir el Drawer cuando se presiona el menú hamburguesa en móvil
             onMenuTap: () => _scaffoldKey.currentState?.openEndDrawer(),
+
+            isEnglish: isEnglish,
+            onLanguageChanged: toggleLanguage,
           ),
           Expanded(
             child: SingleChildScrollView(
@@ -150,16 +161,17 @@ class _HomePageState extends State<HomePage> {
                     key: _heroKey,
                     onProjectsTap: () => _scrollToSection(_projectsKey),
                     onContactsTap: () => _scrollToSection(_contactsKey),
+                    isEnglish: isEnglish,
                   ),
                   const SizedBox(height: 60),
 
-                  ProjectSection(key: _projectsKey),
+                  ProjectSection(key: _projectsKey, isEnglish: isEnglish),
                   const SizedBox(height: 60),
 
-                  SkillsSection(key: _skillsKey),
+                  SkillsSection(key: _skillsKey, isEnglish: isEnglish),
                   const SizedBox(height: 60),
 
-                  ContactSection(key: _contactsKey),
+                  ContactSection(key: _contactsKey, isEnglish: isEnglish),
                 ],
               ),
             ),
